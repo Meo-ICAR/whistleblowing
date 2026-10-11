@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Models\Company;
 use App\Models\Report;
 use App\Notifications\NewReportReceived;
+use App\Services\Bpm\BpmEvents;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
@@ -164,6 +165,9 @@ class PublicReportForm extends Component implements HasForms
         // Avvisa i gestori dell'azienda: l'email non contiene mai il
         // contenuto della segnalazione, solo l'invito ad accedere al pannello.
         Notification::send($this->company->users, new NewReportReceived($report));
+
+        // Avvisa UnicoBPM (responsabile whistleblowing e scadenze): solo riferimento e date, mai il contenuto.
+        BpmEvents::dispatchReceived($report);
 
         // Mostra la schermata di successo
         $this->isSubmitted = true;

@@ -35,4 +35,11 @@ return [
         ],
     ],
 
+    // UnicoBPM: ogni segnalazione ricevuta gli viene comunicata (evento segnalazione.ricevuta) perché avvisi il responsabile
+    // whistleblowing e segua le scadenze di legge. Senza indirizzo o chiave non si invia nulla.
+    'bpm' => [
+        'url' => env('BPM_API_URL'),
+        'key' => env('BPM_BRIDGE_API_KEY'),
+    ],
+
 ];
