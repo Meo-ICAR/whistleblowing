@@ -49,7 +49,7 @@ class AdminPanelProvider extends PanelProvider
             // Riusa Company::getFilamentAvatarUrl() per non duplicare la
             // logica di risoluzione del disco (deve essere sempre 'public').
             ->brandLogo(fn (): string => Filament::getTenant()?->getFilamentAvatarUrl() ?? asset('brand/logos/unico-whistle.jpg'))
-            ->brandLogoHeight('2.75rem')
+            ->brandLogoHeight('5rem')
             ->favicon(asset('brand/icons/unico-whistle-64.png'))
             ->brandName(fn (): string => Filament::getTenant()?->name ?? config('app.name'))
             // Bugfix: la closure va sull'intero array restituito da colors(),
