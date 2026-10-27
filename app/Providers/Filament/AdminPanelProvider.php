@@ -10,6 +10,7 @@ use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
+use Filament\Navigation\NavigationGroup;
 use Filament\Navigation\NavigationItem;
 use Filament\Pages\Dashboard;
 use Filament\Panel;
@@ -63,6 +64,12 @@ class AdminPanelProvider extends PanelProvider
             ->pages([
                 Dashboard::class,
             ])
+            ->navigationGroups([
+                NavigationGroup::make('Gestione Segnalazioni'),
+                NavigationGroup::make('Amministrazione SaaS')->collapsed(),
+                NavigationGroup::make('Documentazione')->collapsed(),
+                NavigationGroup::make('Manuali')->collapsed(),
+            ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\Filament\Widgets')
             ->widgets([
                 AccountWidget::class,
@@ -71,17 +78,17 @@ class AdminPanelProvider extends PanelProvider
             ->navigationItems([
                 NavigationItem::make('Manuale Operativo Tecnico')
                     ->icon('heroicon-o-document-text')
-                    ->group('Documentazione')
+                    ->group('Manuali')
                     ->sort(1)
                     ->url(fn (): string => route('docs.manuale-tecnico'), shouldOpenInNewTab: true),
                 NavigationItem::make('Manuale Utente (PDF)')
                     ->icon('heroicon-o-document-arrow-down')
-                    ->group('Documentazione')
+                    ->group('Manuali')
                     ->sort(2)
                     ->url(fn (): string => route('docs.manuale-utente'), shouldOpenInNewTab: true),
                 NavigationItem::make('Manuale Webmaster')
                     ->icon('heroicon-o-globe-alt')
-                    ->group('Documentazione')
+                    ->group('Manuali')
                     ->sort(3)
                     ->url(fn (): string => route('docs.manuale-webmaster'), shouldOpenInNewTab: true),
             ])
