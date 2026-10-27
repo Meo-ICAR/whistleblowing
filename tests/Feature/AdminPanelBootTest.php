@@ -42,6 +42,6 @@ class AdminPanelBootTest extends TestCase
         $response = $this->get('/admin/login');
 
         $response->assertOk();
-        $response->assertSee(asset('images/unicowhistle.png'), false);
+        $response->assertSee(asset('brand/logos/unico-whistle.jpg'), false);
     }
 }
